@@ -1,11 +1,5 @@
 module "spa_oauth_app" {
-  source = "../../"
-  okta_provider_config = {
-    "org_name" : "awesome-org",
-    "base_url" : "oktapreview.com",
-    "api_token" : "0000000000000000000"
-
-  }
+  source                    = "../../"
   type                      = "browser"
   environment               = "dev"
   name                      = "awesome_app"

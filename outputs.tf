@@ -1,3 +1,8 @@
+output "app" {
+  description = "Okta App details"
+  value       = okta_app_oauth.app
+}
+
 output "app_name" {
   description = "Okta App display name."
   value       = okta_app_oauth.app.name
