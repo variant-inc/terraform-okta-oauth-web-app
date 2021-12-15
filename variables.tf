@@ -8,6 +8,16 @@ variable "environment" {
   type        = string
 }
 
+variable "user_tags" {
+  description = "User tags. See module docs in README.md"
+  type        = map(string)
+}
+
+variable "octopus_tags" {
+  description = "Octopus Tags. See module docs in README.md"
+  type        = map(string)
+}
+
 variable "type" {
   description = "The type of OAuth application. Valid values: \"web\", \"native\", \"browser\", \"service\"."
   validation {
@@ -58,7 +68,7 @@ variable "login_mode" {
 
 variable "login_scopes" {
   description = "List of scopes to use for the request. Valid values: \"openid\", \"profile\", \"email\", \"address\", \"phone\". Required when login_mode is NOT DISABLED."
-  type        = list(any)
+  type        = list(string)
   default     = null
 }
 variable "login_uri" {
@@ -69,7 +79,7 @@ variable "login_uri" {
 
 variable "redirect_uris" {
   description = "Login redirect URIs."
-  type        = list(any)
+  type        = list(string)
   default     = null
 }
 
@@ -81,19 +91,19 @@ variable "wildcard_redirect" {
 
 variable "post_logout_redirect_uris" {
   description = "Logout redirect URIs."
-  type        = list(any)
+  type        = list(string)
   default     = null
 }
 
 variable "response_types" {
   description = "List of OAuth 2.0 response type strings."
-  type        = list(any)
+  type        = list(string)
   default     = null
 }
 
 variable "grant_types" {
   description = "List of OAuth 2.0 grant type strings. Conditional validation params found [here](https://developer.okta.com/docs/api/resources/apps#credentials-settings-details). Defaults to minimum requirements per app type. Valid values: \"authorization_code\", \"implicit\", \"password\", \"refresh_token\", \"client_credentials\", \"urn:ietf:params:oauth:grant-type:saml2-bearer\" (Early Access Property), \"urn:ietf:params:oauth:grant-type:token-exchange\" (Early Access Property)"
-  type        = list(any)
+  type        = list(string)
 }
 
 variable "tos_uri" {
@@ -213,11 +223,6 @@ variable "groups_claim" {
   default = []
 }
 
-variable "admin_note" {
-  description = "Application notes for admins: Purpose, deployment type, team etc"
-  type        = string
-}
-
 variable "enduser_note" {
   description = "Application notes for end users."
   type        = string
@@ -242,8 +247,14 @@ variable "skip_groups" {
   default     = false
 }
 
-variable "custom_group_assignments" {
-  description = "List of IDs of Okta groups to assign to this Okta Oauth App"
-  type        = list(any)
+variable "trusted_origins" {
+  description = "Urls to add as trusted origins to Okta Security"
+  type        = list(string)
   default     = []
+}
+
+variable "app_user_group_rule_groups" {
+  description = "Okta group names. Users of these groups will be added to your Okta app's user group"
+  type        = list(string)
+  default     = null
 }

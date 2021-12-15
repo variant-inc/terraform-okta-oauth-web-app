@@ -5,5 +5,9 @@ terraform {
       source  = "okta/okta"
       version = ">= 3.20"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 3.0"
+    }
   }
 }
