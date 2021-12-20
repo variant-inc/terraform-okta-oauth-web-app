@@ -10,7 +10,7 @@ jobs:
   # Max Terraform version
   getBaseVersion:
     name: Module max TF version
-    runs-on: ubuntu-latest
+    runs-on: [eks]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
