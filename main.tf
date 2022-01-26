@@ -85,10 +85,10 @@ resource "okta_app_oauth" "app" {
   dynamic "groups_claim" {
     for_each = var.groups_claim
     content {
-      type        = group_claims.values.type
-      filter_type = group_claims.values.filter_type
-      name        = group_claims.values.name
-      value       = group_claims.values.value
+      type        = groups_claim.values.type
+      filter_type = groups_claim.values.filter_type
+      name        = groups_claim.values.name
+      value       = groups_claim.values.value
     }
   }
 }
