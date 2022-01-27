@@ -34,11 +34,14 @@
 | [aws_secretsmanager_secret_version.app_secret_version](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret_version) | resource |
 | [okta_app_group_assignments.app_groups_assignments](https://registry.terraform.io/providers/okta/okta/latest/docs/resources/app_group_assignments) | resource |
 | [okta_app_oauth.app](https://registry.terraform.io/providers/okta/okta/latest/docs/resources/app_oauth) | resource |
+| [okta_auth_server_claim.admin_identity_claim](https://registry.terraform.io/providers/okta/okta/latest/docs/resources/auth_server_claim) | resource |
+| [okta_auth_server_claim.admin_resource_claim](https://registry.terraform.io/providers/okta/okta/latest/docs/resources/auth_server_claim) | resource |
 | [okta_group.admin](https://registry.terraform.io/providers/okta/okta/latest/docs/resources/group) | resource |
 | [okta_group.users](https://registry.terraform.io/providers/okta/okta/latest/docs/resources/group) | resource |
 | [okta_group_role.app_group_admin](https://registry.terraform.io/providers/okta/okta/latest/docs/resources/group_role) | resource |
 | [okta_group_rule.app_user_group_rule](https://registry.terraform.io/providers/okta/okta/latest/docs/resources/group_rule) | resource |
 | [okta_trusted_origin.app_trusted_origins](https://registry.terraform.io/providers/okta/okta/latest/docs/resources/trusted_origin) | resource |
+| [okta_auth_server.default_auth_server](https://registry.terraform.io/providers/okta/okta/latest/docs/data-sources/auth_server) | data source |
 | [okta_group.app_user_group_rule_groups](https://registry.terraform.io/providers/okta/okta/latest/docs/data-sources/group) | data source |
 
 ## Inputs
@@ -56,7 +59,6 @@
 | <a name="input_enduser_note"></a> [enduser\_note](#input\_enduser\_note) | Application notes for end users. | `string` | `null` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment of Okta app. | `string` | n/a | yes |
 | <a name="input_grant_types"></a> [grant\_types](#input\_grant\_types) | List of OAuth 2.0 grant type strings. Conditional validation params found [here](https://developer.okta.com/docs/api/resources/apps#credentials-settings-details). Defaults to minimum requirements per app type. Valid values: "authorization\_code", "implicit", "password", "refresh\_token", "client\_credentials", "urn:ietf:params:oauth:grant-type:saml2-bearer" (Early Access Property), "urn:ietf:params:oauth:grant-type:token-exchange" (Early Access Property) | `list(string)` | n/a | yes |
-| <a name="input_groups_claim"></a> [groups\_claim](#input\_groups\_claim) | Groups claim for an OpenID Connect client application. | <pre>list(object({<br>    type        = string<br>    filter_type = string<br>    name        = string<br>    value       = string<br>  }))</pre> | `[]` | no |
 | <a name="input_hide_ios"></a> [hide\_ios](#input\_hide\_ios) | Do not display application icon on mobile app. | `bool` | `true` | no |
 | <a name="input_hide_web"></a> [hide\_web](#input\_hide\_web) | Do not display application icon to users. | `bool` | `true` | no |
 | <a name="input_implicit_assignment"></a> [implicit\_assignment](#input\_implicit\_assignment) | Early Access Property. Enables [Federation Broker Mode](https://help.okta.com/en/prod/Content/Topics/Apps/apps-fbm-enable.htm). When this mode is enabled, users and groups arguments are ignored. | `bool` | `false` | no |
