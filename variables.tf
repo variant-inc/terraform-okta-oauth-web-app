@@ -212,17 +212,6 @@ variable "logo" {
   default     = null
 }
 
-variable "groups_claim" {
-  description = "Groups claim for an OpenID Connect client application."
-  type = list(object({
-    type        = string
-    filter_type = string
-    name        = string
-    value       = string
-  }))
-  default = []
-}
-
 variable "enduser_note" {
   description = "Application notes for end users."
   type        = string
