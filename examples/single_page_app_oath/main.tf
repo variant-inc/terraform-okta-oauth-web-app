@@ -2,7 +2,7 @@ module "spa_oauth_app" {
   source                     = "../../"
   type                       = "browser"
   environment                = "dev"
-  name                       = "awesome_app"
+  name                       = "awesome-app"
   token_endpoint_auth_method = "none"
   grant_types                = ["authorization_code", "implicit"]
   redirect_uris              = ["https://localhost:8080/callback", "https://awesomeapp.com/callback"]
@@ -17,4 +17,12 @@ module "spa_oauth_app" {
     owner   = "You"
   }
   octopus_tags = var.octopus_tags
+  groups_claim = [
+    {
+      "type": "FILTER",
+      "filter_type": "EQUALS",
+      "name": "app-dev-awesome-app-users",
+      "value": "users"
+    }
+  ]
 }
