@@ -17,12 +17,4 @@ module "spa_oauth_app" {
     owner   = "You"
   }
   octopus_tags = var.octopus_tags
-  groups_claim = [
-    {
-      "type": "FILTER",
-      "filter_type": "EQUALS",
-      "name": "app-dev-awesome-app-users",
-      "value": "users"
-    }
-  ]
 }
