@@ -3,17 +3,12 @@ data "okta_group" "app_user_group_rule_groups" {
   name  = var.app_user_group_rule_groups[count.index]
 }
 
-data "okta_auth_server" "default_auth_server" {
-  name = "default"
-}
-
 locals {
   kebab_name = "${var.environment}-${var.name}"
   group_rule_group_list = join(",",
     formatlist("\"%s\"", data.okta_group.app_user_group_rule_groups.*.id)
   )
-  group_rule_expression_value        = "isMemberOfAnyGroup(${local.group_rule_group_list})"
-  auth_server_claim_expression_value = "isMemberOfAnyGroup(\"${okta_group.admin.id}\")"
+  group_rule_expression_value = "isMemberOfAnyGroup(${local.group_rule_group_list})"
 }
 
 module "tags" {
@@ -29,20 +24,6 @@ resource "okta_group" "admin" {
 
 resource "okta_group" "users" {
   name = "app-${local.kebab_name}-users"
-}
-
-resource "okta_auth_server_claim" "admin_identity_claim" {
-  auth_server_id = data.okta_auth_server.default_auth_server.id
-  name           = "admin"
-  value          = local.auth_server_claim_expression_value
-  claim_type     = "IDENTITY"
-}
-
-resource "okta_auth_server_claim" "admin_resource_claim" {
-  auth_server_id = data.okta_auth_server.default_auth_server.id
-  name           = "admin"
-  value          = local.auth_server_claim_expression_value
-  claim_type     = "RESOURCE"
 }
 
 resource "okta_group_role" "app_group_admin" {
