@@ -18,11 +18,6 @@ output "client_id" {
   value       = okta_app_oauth.app.client_id
 }
 
-output "client_secret" {
-  description = "The client secret of the Okta application."
-  value       = okta_app_oauth.app.client_secret
-}
-
 output "app_admin_group_name" {
   description = "Group name of the admin group for the Okta app."
   value       = "app-${var.environment}-${var.name}-administrators"
@@ -31,4 +26,14 @@ output "app_admin_group_name" {
 output "app_users_group_name" {
   description = "Group name of the admin group for the Okta app."
   value       = "app-${var.environment}-${var.name}-users"
+}
+
+output "app_secrets_arn" {
+  description = "The Amazon Secret Manager ARN of the Okta app's secrets."
+  value       = aws_secretsmanager_secret_version.app_secret_version.arn
+}
+
+output "app_secrets_name" {
+  description = "The Amazon Secret Manager name of the Okta app's secrets."
+  value       = "okta-app-${var.name}"
 }
